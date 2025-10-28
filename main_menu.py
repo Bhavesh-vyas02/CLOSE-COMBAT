@@ -79,10 +79,71 @@ class Button:
                 return True
         return False
 
-class CharacterSelect:
+class GameModeSelect:
     def __init__(self):
+        # Create buttons for game mode selection with better positioning
+        button_width = 300
+        button_height = 60
+        button_spacing = 20
+        
+        # Center the buttons vertically
+        start_y = SCREEN_HEIGHT // 2 - 60
+        
+        self.pvp_button = Button(SCREEN_WIDTH // 2 - button_width // 2, start_y, button_width, button_height, "PLAYER VS PLAYER", RED)
+        self.pvc_button = Button(SCREEN_WIDTH // 2 - button_width // 2, start_y + button_height + button_spacing, button_width, button_height, "PLAYER VS COMPUTER", RED)
+        self.back_button = Button(SCREEN_WIDTH // 2 - button_width // 2, start_y + 2 * (button_height + button_spacing), button_width, button_height, "BACK", RED)
+
+    def draw(self, surface):
+        # Draw background
+        scaled_bg = pygame.transform.scale(main_menu_bg, (SCREEN_WIDTH, SCREEN_HEIGHT))
+        surface.blit(scaled_bg, (0, 0))
+        
+        # Add semi-transparent overlay
+        overlay = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+        overlay.fill((0, 0, 0))
+        overlay.set_alpha(120)
+        surface.blit(overlay, (0, 0))
+        
+        # Draw title with glow effect like in the image
+        title_font = pygame.font.Font("assets/fonts/turok.ttf", 72)
+        title_text = "SELECT GAME MODE"
+        
+        # Draw glow effect
+        glow_surf = title_font.render(title_text, True, (255, 0, 255))  # Pink/magenta glow
+        glow_rect = glow_surf.get_rect(center=(SCREEN_WIDTH//2, 140))
+        surface.blit(glow_surf, glow_rect)
+        
+        # Draw main title text
+        main_surf = title_font.render(title_text, True, WHITE)
+        main_rect = main_surf.get_rect(center=(SCREEN_WIDTH//2, 140))
+        surface.blit(main_surf, main_rect)
+        
+        # Draw buttons
+        self.pvp_button.draw(surface)
+        self.pvc_button.draw(surface)
+        self.back_button.draw(surface)
+
+    def handle_event(self, event):
+        # Process mouse motion for all buttons first
+        if event.type == pygame.MOUSEMOTION:
+            self.pvp_button.handle_event(event)
+            self.pvc_button.handle_event(event)
+            self.back_button.handle_event(event)
+        
+        if self.pvp_button.handle_event(event):
+            return "PVP"
+        elif self.pvc_button.handle_event(event):
+            return "PVC"
+        elif self.back_button.handle_event(event):
+            return "BACK"
+        return None
+
+class CharacterSelect:
+    def __init__(self, pvc_mode=False):
+        self.pvc_mode = pvc_mode
         self.p1_selected = None
         self.p2_selected = None
+        self.ai_selected = None
         self.p1_confirmed = False
         self.p2_confirmed = False
         self.current_player = 1
@@ -154,7 +215,12 @@ class CharacterSelect:
         surface.blit(title, title_rect)
 
         # Draw player labels with glow
-        for label, x in [("PLAYER 1", self.p1_preview_x), ("PLAYER 2", self.p2_preview_x)]:
+        if self.pvc_mode:
+            labels = [("PLAYER", self.p1_preview_x), ("COMPUTER", self.p2_preview_x)]
+        else:
+            labels = [("PLAYER 1", self.p1_preview_x), ("PLAYER 2", self.p2_preview_x)]
+        
+        for label, x in labels:
             # Main text only, no glow
             text = player_label_font.render(label, True, WHITE)
             text_rect = text.get_rect(midtop=(x + self.preview_width//2, self.preview_y - 60))
@@ -169,10 +235,18 @@ class CharacterSelect:
         surface.blit(vs_text, vs_rect)
 
         # Draw preview boxes and character displays
-        for preview_x, selected, confirmed, confirm_button in [
-            (self.p1_preview_x, self.p1_selected, self.p1_confirmed, self.p1_confirm_button),
-            (self.p2_preview_x, self.p2_selected, self.p2_confirmed, self.p2_confirm_button)
-        ]:
+        if self.pvc_mode:
+            preview_data = [
+                (self.p1_preview_x, self.p1_selected, self.p1_confirmed, self.p1_confirm_button),
+                (self.p2_preview_x, self.ai_selected, True, None)  # AI is always "confirmed"
+            ]
+        else:
+            preview_data = [
+                (self.p1_preview_x, self.p1_selected, self.p1_confirmed, self.p1_confirm_button),
+                (self.p2_preview_x, self.p2_selected, self.p2_confirmed, self.p2_confirm_button)
+            ]
+        
+        for preview_x, selected, confirmed, confirm_button in preview_data:
             # Draw preview box with border and background
             preview_rect = pygame.Rect(preview_x, self.preview_y, self.preview_width, self.preview_height)
             pygame.draw.rect(surface, (30, 30, 30), preview_rect)
@@ -228,35 +302,73 @@ class CharacterSelect:
             button.draw(surface)
 
         # Draw current player indicator if not both confirmed
-        if not (self.p1_confirmed and self.p2_confirmed):
+        if self.pvc_mode:
             if not self.p1_confirmed:
-                player_text = "PLAYER 1 SELECT"
-                color = WHITE  # Changed from purple to white
-            elif not self.p2_confirmed:
-                player_text = "PLAYER 2 SELECT"
-                color = WHITE  # Changed from yellow to white
-            # Main text only, no glow
-            text = player_label_font.render(player_text, True, color)
-            text_rect = text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT - 160))
-            surface.blit(text, text_rect)
+                player_text = "SELECT YOUR CHARACTER"
+                color = WHITE
+                text = player_label_font.render(player_text, True, color)
+                text_rect = text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT - 160))
+                surface.blit(text, text_rect)
+        else:
+            if not (self.p1_confirmed and self.p2_confirmed):
+                if not self.p1_confirmed:
+                    player_text = "PLAYER 1 SELECT"
+                    color = WHITE
+                elif not self.p2_confirmed:
+                    player_text = "PLAYER 2 SELECT"
+                    color = WHITE
+                # Main text only, no glow
+                text = player_label_font.render(player_text, True, color)
+                text_rect = text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT - 160))
+                surface.blit(text, text_rect)
 
         # Draw start button only if both players have confirmed
-        if self.p1_confirmed and self.p2_confirmed:
-            self.start_button.draw(surface)
+        if self.pvc_mode:
+            if self.p1_confirmed:
+                self.start_button.draw(surface)
+        else:
+            if self.p1_confirmed and self.p2_confirmed:
+                self.start_button.draw(surface)
 
     def handle_event(self, event):
+        # First, process mouse motion for all buttons to update hover states
+        if event.type == pygame.MOUSEMOTION:
+            for button in self.char_buttons.values():
+                button.handle_event(event)
+            self.p1_confirm_button.handle_event(event)
+            if not self.pvc_mode:
+                self.p2_confirm_button.handle_event(event)
+            self.start_button.handle_event(event)
+        
         # Handle character selection
-        if not (self.p1_confirmed and self.p2_confirmed):
+        if self.pvc_mode:
+            # Only Player 1 selects and confirms
             for char, button in self.char_buttons.items():
                 if button.handle_event(event):
-                    # Allow selection only if player hasn't confirmed
-                    if not self.p1_confirmed and (self.current_player == 1 or self.p1_selected == char):
+                    if not self.p1_confirmed:
                         self.p1_selected = None if self.p1_selected == char else char
-                        self.current_player = 1
-                    elif not self.p2_confirmed and (self.current_player == 2 or self.p2_selected == char):
-                        self.p2_selected = None if self.p2_selected == char else char
-                        self.current_player = 2
-                    return False
+                        return False
+            if self.p1_selected and not self.p1_confirmed:
+                if self.p1_confirm_button.handle_event(event):
+                    self.p1_confirmed = True
+                    # Randomly select AI character (not same as P1)
+                    import random
+                    ai_choices = [c for c in self.char_buttons.keys() if c != self.p1_selected]
+                    self.ai_selected = random.choice(ai_choices)
+                    return True  # Ready to proceed
+            return False
+        else:
+            if not (self.p1_confirmed and self.p2_confirmed):
+                for char, button in self.char_buttons.items():
+                    if button.handle_event(event):
+                        # Allow selection only if player hasn't confirmed
+                        if not self.p1_confirmed and (self.current_player == 1 or self.p1_selected == char):
+                            self.p1_selected = None if self.p1_selected == char else char
+                            self.current_player = 1
+                        elif not self.p2_confirmed and (self.current_player == 2 or self.p2_selected == char):
+                            self.p2_selected = None if self.p2_selected == char else char
+                            self.current_player = 2
+                        return False
 
         # Handle confirm buttons
         if self.p1_selected and not self.p1_confirmed:
@@ -265,15 +377,20 @@ class CharacterSelect:
                 self.current_player = 2
                 return False
 
-        if self.p2_selected and not self.p2_confirmed:
+        if not self.pvc_mode and self.p2_selected and not self.p2_confirmed:
             if self.p2_confirm_button.handle_event(event):
                 self.p2_confirmed = True
                 return False
 
         # Handle start button
-        if self.p1_confirmed and self.p2_confirmed:
-            if self.start_button.handle_event(event):
-                return True
+        if self.pvc_mode:
+            if self.p1_confirmed:
+                if self.start_button.handle_event(event):
+                    return True
+        else:
+            if self.p1_confirmed and self.p2_confirmed:
+                if self.start_button.handle_event(event):
+                    return True
 
         return False
 
@@ -320,10 +437,12 @@ class MainMenu:
 def main_menu():
     clock = pygame.time.Clock()
     menu = MainMenu()
-    char_select = CharacterSelect()
+    game_mode_select = GameModeSelect()
+    char_select = None  # Will be created based on game mode
     bg_selector = BackgroundSelector(SCREEN_WIDTH, SCREEN_HEIGHT)
     current_screen = "MENU"
     selected_chars = None
+    pvc_mode = False
 
     # Background music
     pygame.mixer.music.load("assets/audio/music.mp3")
@@ -339,25 +458,43 @@ def main_menu():
             if current_screen == "MENU":
                 result = menu.handle_event(event)
                 if result == "PLAY":
-                    current_screen = "CHARACTER_SELECT"
+                    current_screen = "GAME_MODE_SELECT"
                 elif result == "QUIT":
                     pygame.quit()
                     sys.exit()
             
+            elif current_screen == "GAME_MODE_SELECT":
+                result = game_mode_select.handle_event(event)
+                if result == "PVP":
+                    pvc_mode = False
+                    char_select = CharacterSelect(pvc_mode)
+                    current_screen = "CHARACTER_SELECT"
+                elif result == "PVC":
+                    pvc_mode = True
+                    char_select = CharacterSelect(pvc_mode)
+                    current_screen = "CHARACTER_SELECT"
+                elif result == "BACK":
+                    current_screen = "MENU"
+            
             elif current_screen == "CHARACTER_SELECT":
                 if char_select.handle_event(event):
-                    selected_chars = (char_select.p1_selected, char_select.p2_selected)
+                    if pvc_mode:
+                        selected_chars = (char_select.p1_selected, char_select.ai_selected)
+                    else:
+                        selected_chars = (char_select.p1_selected, char_select.p2_selected)
                     current_screen = "BACKGROUND_SELECT"
             
             elif current_screen == "BACKGROUND_SELECT":
                 selected_bg = bg_selector.handle_event(event)
                 if selected_bg is not None:
-                    return selected_chars[0], selected_chars[1], selected_bg
+                    return selected_chars[0], selected_chars[1], selected_bg, pvc_mode
 
         screen.fill(BLACK)
         
         if current_screen == "MENU":
             menu.draw(screen)
+        elif current_screen == "GAME_MODE_SELECT":
+            game_mode_select.draw(screen)
         elif current_screen == "CHARACTER_SELECT":
             char_select.draw(screen)
         elif current_screen == "BACKGROUND_SELECT":
@@ -369,5 +506,5 @@ def main_menu():
 if __name__ == "__main__":
     result = main_menu()
     if result:
-        p1_char, p2_char, selected_bg = result
-        print(f"Selected: Player 1: {p1_char}, Player 2: {p2_char}, Background: {selected_bg.name}") 
+        p1_char, p2_char, selected_bg, pvc_mode = result
+        print(f"Selected: Player 1: {p1_char}, Player 2: {p2_char}, Background: {selected_bg.name}, PvC: {pvc_mode}") 
