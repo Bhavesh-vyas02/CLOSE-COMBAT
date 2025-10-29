@@ -1,7 +1,18 @@
 import pygame
 from pygame import mixer
 import sys
+import os
 from background_maps import BackgroundSelector
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # When running in development, use the script's directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 # Initialize Pygame
 pygame.init()
@@ -20,30 +31,30 @@ RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 
 # Font
-menu_font = pygame.font.Font("assets/fonts/turok.ttf", 60)
-player_label_font = pygame.font.Font("assets/fonts/turok.ttf", 35)
-button_font = pygame.font.Font("assets/fonts/turok.ttf", 30)
-char_name_font = pygame.font.Font("assets/fonts/turok.ttf", 25)
+menu_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 60)
+player_label_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 35)
+button_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 30)
+char_name_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 25)
 
 # Load background
-main_menu_bg = pygame.image.load("assets/images/background/main_menu_bg.jpg").convert_alpha()
-player_select_bg = pygame.image.load("assets/images/background/player_selection_bg2.jpg").convert_alpha()
+main_menu_bg = pygame.image.load(resource_path("assets/images/background/main_menu_bg.jpg")).convert_alpha()
+player_select_bg = pygame.image.load(resource_path("assets/images/background/player_selection_bg2.jpg")).convert_alpha()
 
 # Load character sprite images for selection buttons
-warrior_img = pygame.image.load("assets/images/warrior/Sprites/warrior.png").convert_alpha()
-wizard_img = pygame.image.load("assets/images/wizard/Sprites/wizard.png").convert_alpha()
-huntress_img = pygame.image.load("assets/images/Huntress/Sprites/huntress.png").convert_alpha()
-king_img = pygame.image.load("assets/images/Medieval King Pack 2/Sprites/king.png").convert_alpha()
-hero_knight_img = pygame.image.load("assets/images/Hero Knight/Sprites/hero_knight.png").convert_alpha()
-martial_hero_img = pygame.image.load("assets/images/Martial Hero/Sprites/martial_hero.png").convert_alpha()
+warrior_img = pygame.image.load(resource_path("assets/images/warrior/Sprites/warrior.png")).convert_alpha()
+wizard_img = pygame.image.load(resource_path("assets/images/wizard/Sprites/wizard.png")).convert_alpha()
+huntress_img = pygame.image.load(resource_path("assets/images/Huntress/Sprites/huntress.png")).convert_alpha()
+king_img = pygame.image.load(resource_path("assets/images/Medieval King Pack 2/Sprites/king.png")).convert_alpha()
+hero_knight_img = pygame.image.load(resource_path("assets/images/Hero Knight/Sprites/hero_knight.png")).convert_alpha()
+martial_hero_img = pygame.image.load(resource_path("assets/images/Martial Hero/Sprites/martial_hero.png")).convert_alpha()
 
 # Load character display images for preview
-warrior_display = pygame.image.load("assets/images/warrior/warrior_display.jpg").convert_alpha()
-wizard_display = pygame.image.load("assets/images/wizard/wizard_display.jpg").convert_alpha()
-huntress_display = pygame.image.load("assets/images/Huntress/huntress_display.jpg").convert_alpha()
-king_display = pygame.image.load("assets/images/Medieval King Pack 2/hero king_display.jpg").convert_alpha()
-hero_knight_display = pygame.image.load("assets/images/Hero Knight/hero knight_display.jpg").convert_alpha()
-martial_hero_display = pygame.image.load("assets/images/Martial Hero/martial hero_display.jpg").convert_alpha()
+warrior_display = pygame.image.load(resource_path("assets/images/warrior/warrior_display.jpg")).convert_alpha()
+wizard_display = pygame.image.load(resource_path("assets/images/wizard/wizard_display.jpg")).convert_alpha()
+huntress_display = pygame.image.load(resource_path("assets/images/Huntress/huntress_display.jpg")).convert_alpha()
+king_display = pygame.image.load(resource_path("assets/images/Medieval King Pack 2/hero king_display.jpg")).convert_alpha()
+hero_knight_display = pygame.image.load(resource_path("assets/images/Hero Knight/hero knight_display.jpg")).convert_alpha()
+martial_hero_display = pygame.image.load(resource_path("assets/images/Martial Hero/martial hero_display.jpg")).convert_alpha()
 
 # Dictionary to map character names to their display images
 CHARACTER_DISPLAYS = {
@@ -105,7 +116,7 @@ class GameModeSelect:
         surface.blit(overlay, (0, 0))
         
         # Draw title with glow effect like in the image
-        title_font = pygame.font.Font("assets/fonts/turok.ttf", 72)
+        title_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 72)
         title_text = "SELECT GAME MODE"
         
         # Draw glow effect
@@ -205,7 +216,7 @@ class CharacterSelect:
         # Draw title with glow effect
         title_text = "SELECT YOUR FIGHTERS"
         # Glow effect
-        glow_font = pygame.font.Font("assets/fonts/turok.ttf", 72)
+        glow_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 72)
         glow_surf = glow_font.render(title_text, True, (255, 0, 255))
         glow_rect = glow_surf.get_rect(center=(SCREEN_WIDTH//2, 50))
         surface.blit(glow_surf, glow_rect)
@@ -413,7 +424,7 @@ class MainMenu:
         # Draw title with subtle glow effect
         title_text = "CLOSE COMBAT"
         # Draw glow
-        glow_font = pygame.font.Font("assets/fonts/turok.ttf", 65)  # Decreased from 82
+        glow_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 65)  # Decreased from 82
         glow_surf = glow_font.render(title_text, True, (255, 0, 255))  # Pink glow
         glow_surf.set_alpha(150)  # Make glow more subtle
         glow_rect = glow_surf.get_rect(center=(SCREEN_WIDTH//2, 100))
@@ -434,18 +445,22 @@ class MainMenu:
             return "QUIT"
         return None
 
-def main_menu():
+def main_menu(start_screen="MENU", start_pvc_mode=False):
     clock = pygame.time.Clock()
     menu = MainMenu()
     game_mode_select = GameModeSelect()
     char_select = None  # Will be created based on game mode
     bg_selector = BackgroundSelector(SCREEN_WIDTH, SCREEN_HEIGHT)
-    current_screen = "MENU"
+    current_screen = start_screen
     selected_chars = None
-    pvc_mode = False
+    pvc_mode = start_pvc_mode
+    
+    # If starting at character select, create the character select screen
+    if start_screen == "CHARACTER_SELECT":
+        char_select = CharacterSelect(pvc_mode)
 
     # Background music
-    pygame.mixer.music.load("assets/audio/music.mp3")
+    pygame.mixer.music.load(resource_path("assets/audio/music.mp3"))
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1, 0.0, 5000)
 

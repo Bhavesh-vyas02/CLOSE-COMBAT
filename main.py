@@ -2,6 +2,18 @@ import pygame
 from pygame import mixer
 from fighter import Fighter
 import main_menu
+import sys
+import os
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # When running in development, use the script's directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     global game_paused, pause_menu_selection, background_sound_on, player_sound_on, match_over, match_winner
@@ -60,6 +72,9 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     round_announcement_start_time = 0
     round_announcement_duration = 2000  # 2 seconds total
     round_announcement_fade_duration = 500  # 0.5 seconds fade out
+    
+    # Navigation control variable
+    next_screen = None
 
     #define fighter variables
     WARRIOR_SIZE = 162
@@ -88,24 +103,24 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     MARTIAL_HERO_DATA = [MARTIAL_HERO_SIZE, MARTIAL_HERO_SCALE, MARTIAL_HERO_OFFSET]
 
     #load music and sounds
-    pygame.mixer.music.load("assets/audio/music.mp3")
+    pygame.mixer.music.load(resource_path("assets/audio/music.mp3"))
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1, 0.0, 5000)
-    sword_fx = pygame.mixer.Sound("assets/audio/sword.wav")
+    sword_fx = pygame.mixer.Sound(resource_path("assets/audio/sword.wav"))
     sword_fx.set_volume(0.5)
-    magic_fx = pygame.mixer.Sound("assets/audio/magic.wav")
+    magic_fx = pygame.mixer.Sound(resource_path("assets/audio/magic.wav"))
     magic_fx.set_volume(0.75)
 
     #load spritesheets
-    warrior_sheet = pygame.image.load("assets/images/warrior/Sprites/warrior.png").convert_alpha()
-    wizard_sheet = pygame.image.load("assets/images/wizard/Sprites/wizard.png").convert_alpha()
-    huntress_sheet = pygame.image.load("assets/images/Huntress/Sprites/huntress.png").convert_alpha()
-    king_sheet = pygame.image.load("assets/images/Medieval King Pack 2/Sprites/king.png").convert_alpha()
-    hero_knight_sheet = pygame.image.load("assets/images/Hero Knight/Sprites/hero_knight.png").convert_alpha()
-    martial_hero_sheet = pygame.image.load("assets/images/Martial Hero/Sprites/martial_hero.png").convert_alpha()
+    warrior_sheet = pygame.image.load(resource_path("assets/images/warrior/Sprites/warrior.png")).convert_alpha()
+    wizard_sheet = pygame.image.load(resource_path("assets/images/wizard/Sprites/wizard.png")).convert_alpha()
+    huntress_sheet = pygame.image.load(resource_path("assets/images/Huntress/Sprites/huntress.png")).convert_alpha()
+    king_sheet = pygame.image.load(resource_path("assets/images/Medieval King Pack 2/Sprites/king.png")).convert_alpha()
+    hero_knight_sheet = pygame.image.load(resource_path("assets/images/Hero Knight/Sprites/hero_knight.png")).convert_alpha()
+    martial_hero_sheet = pygame.image.load(resource_path("assets/images/Martial Hero/Sprites/martial_hero.png")).convert_alpha()
 
     #load victory image
-    victory_img = pygame.image.load("assets/images/icons/victory.png").convert_alpha()
+    victory_img = pygame.image.load(resource_path("assets/images/icons/victory.png")).convert_alpha()
 
     #define number of steps in each animation
     WARRIOR_ANIMATION_STEPS = [10, 8, 1, 7, 7, 3, 7]
@@ -116,9 +131,9 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     MARTIAL_HERO_ANIMATION_STEPS = [8, 8, 2, 6, 6, 4, 6]
 
     #define font
-    count_font = pygame.font.Font("assets/fonts/turok.ttf", 80)
-    score_font = pygame.font.Font("assets/fonts/turok.ttf", 30)
-    control_font = pygame.font.Font("assets/fonts/turok.ttf", 20)
+    count_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 80)
+    score_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 30)
+    control_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 20)
 
     #function for drawing text
     def draw_text(text, font, text_col, x, y):
@@ -174,7 +189,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
             return
         
         debug_info = fighter.ai_get_debug_info()
-        debug_font = pygame.font.Font("assets/fonts/turok.ttf", 16)
+        debug_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 16)
         
         y_offset = 0
         for key, value in debug_info.items():
@@ -187,7 +202,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     def draw_timer(time_left, round_num, total_rounds):
         # Round text (top line) - no background, directly on game background
         round_text = f"Round {round_num}/{total_rounds}"
-        round_font = pygame.font.Font("assets/fonts/turok.ttf", 24)
+        round_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 24)
         round_surface = round_font.render(round_text, True, WHITE)
         round_rect = round_surface.get_rect(center=(SCREEN_WIDTH // 2, 30))
         screen.blit(round_surface, round_rect)
@@ -197,7 +212,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
         seconds = int(time_left) % 60
         timer_text = f"{minutes:02d}:{seconds:02d}"
         timer_color = RED if time_left <= 10 else WHITE
-        timer_font = pygame.font.Font("assets/fonts/turok.ttf", 32)
+        timer_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 32)
         timer_surface = timer_font.render(timer_text, True, timer_color)
         timer_rect = timer_surface.get_rect(center=(SCREEN_WIDTH // 2, 60))
         screen.blit(timer_surface, timer_rect)
@@ -219,7 +234,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
         
         # Create the announcement text
         announcement_text = f"ROUND {round_num}"
-        announcement_font = pygame.font.Font("assets/fonts/turok.ttf", 120)
+        announcement_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 120)
         
         # Create surface with per-pixel alpha
         text_surface = announcement_font.render(announcement_text, True, WHITE)
@@ -289,7 +304,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
             pygame.draw.rect(screen, WHITE, button_rect, 3, border_radius=10)  # White border
             
             # Button text
-            button_font = pygame.font.Font("assets/fonts/turok.ttf", 24)
+            button_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 24)
             text_surface = button_font.render(option, True, WHITE)
             text_rect = text_surface.get_rect(center=button_rect.center)
             screen.blit(text_surface, text_rect)
@@ -308,14 +323,14 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
         victory_text = f"{match_winner} WINS!"
         
         # Draw glow effect
-        glow_font = pygame.font.Font("assets/fonts/turok.ttf", 65)
+        glow_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 65)
         glow_surf = glow_font.render(victory_text, True, (255, 0, 255))  # Pink glow
         glow_surf.set_alpha(150)
         glow_rect = glow_surf.get_rect(center=(SCREEN_WIDTH // 2, 150))
         screen.blit(glow_surf, glow_rect)
         
         # Draw main victory text
-        victory_font = pygame.font.Font("assets/fonts/turok.ttf", 60)
+        victory_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 60)
         victory_surface = victory_font.render(victory_text, True, WHITE)
         victory_rect = victory_surface.get_rect(center=(SCREEN_WIDTH // 2, 150))
         screen.blit(victory_surface, victory_rect)
@@ -357,7 +372,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
             pygame.draw.rect(screen, WHITE, button_rect, 3, border_radius=10)  # White border
             
             # Button text
-            button_font = pygame.font.Font("assets/fonts/turok.ttf", 24)
+            button_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 24)
             text_surface = button_font.render(option, True, WHITE)
             text_rect = text_surface.get_rect(center=button_rect.center)
             screen.blit(text_surface, text_rect)
@@ -621,8 +636,8 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                                 print("Game Resumed")
                             elif i == 3:  # Quit
                                 print("Returning to menu...")
+                                next_screen = "main_menu"
                                 run = False
-                                return
                             break
             
             # Handle mouse clicks on victory menu
@@ -661,17 +676,17 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                                 fighter_1 = create_fighter(1, 250, 310, p1_character, False)
                                 fighter_2 = create_fighter(2, 650, 310, p2_character, pvc_mode)
                             elif i == 1:  # Change Character
-                                print("Returning to character selection...")
+                                print("Going to character selection...")
+                                next_screen = "character_select"
                                 run = False
-                                return "character_select"
                             elif i == 2:  # Main Menu
-                                print("Returning to main menu...")
+                                print("Going to main menu...")
+                                next_screen = "main_menu"
                                 run = False
-                                return "main_menu"
                             elif i == 3:  # Quit
                                 print("Quitting game...")
-                                run = False
-                                return "quit"
+                                pygame.quit()
+                                exit()
                             break
 
         # Draw pause menu if paused
@@ -685,8 +700,10 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
         #update display
         pygame.display.update()
 
-    #exit pygame
-    pygame.quit()
+    # Return the appropriate screen based on user choice
+    if next_screen:
+        return next_screen
+    return None  # Default return when game ends normally
 
 if __name__ == "__main__":
     # Initialize Pygame for the menu
@@ -694,9 +711,12 @@ if __name__ == "__main__":
     mixer.init()
     
     # Main game loop to handle different states
+    start_screen = "MENU"
+    start_pvc_mode = False
+    
     while True:
         # Get selections from menu
-        result = main_menu.main_menu()
+        result = main_menu.main_menu(start_screen, start_pvc_mode)
         
         if result:
             p1_char, p2_char, selected_bg, pvc_mode = result
@@ -707,10 +727,16 @@ if __name__ == "__main__":
                 game_result = start_game(p1_char, p2_char, selected_bg, pvc_mode)
                 
                 if game_result == "character_select":
-                    # Break to character selection (outer loop will handle this)
+                    # Go directly to character selection with same PvC mode
+                    print("Going to character selection...")
+                    start_screen = "CHARACTER_SELECT"
+                    start_pvc_mode = pvc_mode
                     break
                 elif game_result == "main_menu":
-                    # Break to main menu (outer loop will handle this)
+                    # Go back to main menu
+                    print("Going to main menu...")
+                    start_screen = "MENU"
+                    start_pvc_mode = False
                     break
                 elif game_result == "quit":
                     # Exit completely
@@ -718,6 +744,8 @@ if __name__ == "__main__":
                     exit()
                 elif game_result is None:
                     # Game ended normally (ESC or window close)
+                    start_screen = "MENU"
+                    start_pvc_mode = False
                     break
                 # If game_result is anything else, continue the inner loop (replay)
         else:

@@ -1,4 +1,16 @@
 import pygame
+import sys
+import os
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # When running in development, use the script's directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 class Fighter():
   def __init__(self, player, x, y, flip, data, sprite_sheet, animation_steps, sound, is_ai=False, character_type="WARRIOR"):
@@ -303,7 +315,7 @@ class Fighter():
       self.attack_sound.play()
       
       # Different attack ranges for each character
-      if self.attack_sound == pygame.mixer.Sound("assets/audio/sword.wav"):
+      if self.character_type in ["WARRIOR", "HUNTRESS", "KING", "HERO_KNIGHT", "MARTIAL_HERO"]:
         if self.size == 162:  # Warrior
           # Shorter range for melee attacks
           attack_width = 1.5 * self.rect.width

@@ -1,5 +1,16 @@
 import pygame
 import os
+import sys
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # When running in development, use the script's directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 class BackgroundMap:
     def __init__(self, name, image_path, preview_path, description):
@@ -19,7 +30,7 @@ class BackgroundMap:
 
     def create_preview(self):
         # Load the original image
-        original = pygame.image.load(self.image_path).convert_alpha()
+        original = pygame.image.load(resource_path(self.image_path)).convert_alpha()
         
         # Create a preview-sized surface
         preview = pygame.Surface((400, 225))  # 16:9 ratio
@@ -36,10 +47,10 @@ class BackgroundMap:
     def load_images(self):
         try:
             print(f"Loading images for {self.name}...")  # Debug print
-            self.image = pygame.image.load(self.image_path).convert_alpha()
+            self.image = pygame.image.load(resource_path(self.image_path)).convert_alpha()
             if not os.path.exists(self.preview_path):
                 self.create_preview()
-            self.preview = pygame.image.load(self.preview_path).convert_alpha()
+            self.preview = pygame.image.load(resource_path(self.preview_path)).convert_alpha()
             print(f"Successfully loaded images for {self.name}")  # Debug print
         except Exception as e:
             print(f"Error loading images for {self.name}: {str(e)}")  # Debug print
@@ -106,8 +117,8 @@ class BackgroundSelector:
         ]
         
         # Load fonts
-        self.title_font = pygame.font.Font("assets/fonts/turok.ttf", 60)
-        self.desc_font = pygame.font.Font("assets/fonts/turok.ttf", 30)
+        self.title_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 60)
+        self.desc_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 30)
         
         # Colors
         self.WHITE = (255, 255, 255)
@@ -187,7 +198,7 @@ class BackgroundSelector:
         else:
             # Draw text for non-navigation buttons
             text_size = 34 if is_hovered else 32  # Slightly larger text when hovered
-            text_font = pygame.font.Font("assets/fonts/turok.ttf", text_size)
+            text_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), text_size)
             text_surface = text_font.render(text, True, (255, 255, 255, 255))
             text_rect = text_surface.get_rect(center=button_surface.get_rect().center)
             button_surface.blit(text_surface, text_rect)
@@ -215,7 +226,7 @@ class BackgroundSelector:
 
         # Draw title with glow effect
         title_text = "SELECT YOUR ARENA"
-        glow_font = pygame.font.Font("assets/fonts/turok.ttf", 62)
+        glow_font = pygame.font.Font(resource_path("assets/fonts/turok.ttf"), 62)
         glow_surf = glow_font.render(title_text, True, (255, 0, 255))
         glow_rect = glow_surf.get_rect(center=(self.screen_width//2, 50))
         surface.blit(glow_surf, glow_rect)
