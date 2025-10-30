@@ -1,0 +1,77 @@
+2025-10-30 16:32:57,624 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI100922\close_combat.db
+2025-10-30 16:32:57,699 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:32:57,699 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:32:57,699 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:33:23,195 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI207522\close_combat.db
+2025-10-30 16:33:23,274 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:33:23,275 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:33:23,275 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:36:16,241 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI258122\close_combat.db
+2025-10-30 16:36:16,308 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:36:16,308 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:36:16,309 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:38:57,394 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI227882\close_combat.db
+2025-10-30 16:38:57,470 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:38:57,471 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:38:57,472 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:50:56,355 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI270322\close_combat.db
+2025-10-30 16:50:56,433 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:50:56,434 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:50:56,435 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:55:07,842 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI81242\close_combat.db
+2025-10-30 16:55:07,922 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:55:07,922 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:55:07,922 - SettingsManager - INFO - Initialized default settings
+2025-10-30 16:56:24,948 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI178402\close_combat.db
+2025-10-30 16:56:25,020 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 16:56:25,020 - GameSession - INFO - Database initialized successfully
+2025-10-30 16:56:25,022 - SettingsManager - INFO - Initialized default settings
+2025-10-30 17:07:09,417 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI226642\close_combat.db
+2025-10-30 17:07:09,530 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 17:07:09,531 - GameSession - INFO - Database initialized successfully
+2025-10-30 17:07:09,531 - SettingsManager - INFO - Initialized default settings
+2025-10-30 17:07:40,603 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI273522\close_combat.db
+2025-10-30 17:07:40,702 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 17:07:40,702 - GameSession - INFO - Database initialized successfully
+2025-10-30 17:07:40,703 - SettingsManager - INFO - Initialized default settings
+2025-10-30 17:07:58,860 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,875 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,891 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,908 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,925 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,941 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,957 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,972 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:58,990 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,005 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,023 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,039 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,057 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,075 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,091 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,107 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,125 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,140 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,158 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,175 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,191 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,206 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,224 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,239 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,256 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,273 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,291 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,307 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,322 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,340 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,355 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,372 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,389 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,405 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,422 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,439 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,455 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,471 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,486 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,503 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:07:59,520 - DatabaseManager - ERROR - Fetch all error: no such column: p.name

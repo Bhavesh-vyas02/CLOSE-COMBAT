@@ -3,6 +3,7 @@ from pygame import mixer
 import sys
 import os
 from background_maps import BackgroundSelector
+from database_ui import DatabaseMenuScreen, PlayerStatsScreen, MatchHistoryScreen, LeaderboardScreen
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -407,8 +408,9 @@ class CharacterSelect:
 
 class MainMenu:
     def __init__(self):
-        self.play_button = Button(400, 200, 200, 50, "PLAY", RED)
-        self.quit_button = Button(400, 300, 200, 50, "QUIT", RED)
+        self.play_button = Button(400, 180, 200, 50, "PLAY", RED)
+        self.stats_button = Button(400, 250, 200, 50, "PLAYER DATA", RED)
+        self.quit_button = Button(400, 320, 200, 50, "QUIT", RED)
 
     def draw(self, surface):
         # Draw main menu background
@@ -436,11 +438,14 @@ class MainMenu:
 
         # Draw buttons
         self.play_button.draw(surface)
+        self.stats_button.draw(surface)
         self.quit_button.draw(surface)
 
     def handle_event(self, event):
         if self.play_button.handle_event(event):
             return "PLAY"
+        elif self.stats_button.handle_event(event):
+            return "STATS"
         elif self.quit_button.handle_event(event):
             return "QUIT"
         return None
@@ -451,6 +456,13 @@ def main_menu(start_screen="MENU", start_pvc_mode=False):
     game_mode_select = GameModeSelect()
     char_select = None  # Will be created based on game mode
     bg_selector = BackgroundSelector(SCREEN_WIDTH, SCREEN_HEIGHT)
+    
+    # Database UI screens
+    database_menu = DatabaseMenuScreen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    stats_screen = PlayerStatsScreen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    history_screen = MatchHistoryScreen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    leaderboard_screen = LeaderboardScreen(SCREEN_WIDTH, SCREEN_HEIGHT)
+    
     current_screen = start_screen
     selected_chars = None
     pvc_mode = start_pvc_mode
@@ -469,11 +481,20 @@ def main_menu(start_screen="MENU", start_pvc_mode=False):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            
+            # Handle mouse motion for button hover effects
+            if event.type == pygame.MOUSEMOTION:
+                if current_screen == "MENU":
+                    menu.play_button.handle_event(event)
+                    menu.stats_button.handle_event(event)
+                    menu.quit_button.handle_event(event)
 
             if current_screen == "MENU":
                 result = menu.handle_event(event)
                 if result == "PLAY":
                     current_screen = "GAME_MODE_SELECT"
+                elif result == "STATS":
+                    current_screen = "DATABASE_MENU"
                 elif result == "QUIT":
                     pygame.quit()
                     sys.exit()
@@ -503,6 +524,32 @@ def main_menu(start_screen="MENU", start_pvc_mode=False):
                 selected_bg = bg_selector.handle_event(event)
                 if selected_bg is not None:
                     return selected_chars[0], selected_chars[1], selected_bg, pvc_mode
+            
+            elif current_screen == "DATABASE_MENU":
+                result = database_menu.handle_event(event)
+                if result == "STATS":
+                    current_screen = "PLAYER_STATS"
+                elif result == "HISTORY":
+                    current_screen = "MATCH_HISTORY"
+                elif result == "LEADERBOARD":
+                    current_screen = "LEADERBOARD"
+                elif result == "BACK":
+                    current_screen = "MENU"
+            
+            elif current_screen == "PLAYER_STATS":
+                result = stats_screen.handle_event(event)
+                if result == "BACK":
+                    current_screen = "DATABASE_MENU"
+            
+            elif current_screen == "MATCH_HISTORY":
+                result = history_screen.handle_event(event)
+                if result == "BACK":
+                    current_screen = "DATABASE_MENU"
+            
+            elif current_screen == "LEADERBOARD":
+                result = leaderboard_screen.handle_event(event)
+                if result == "BACK":
+                    current_screen = "DATABASE_MENU"
 
         screen.fill(BLACK)
         
@@ -514,12 +561,30 @@ def main_menu(start_screen="MENU", start_pvc_mode=False):
             char_select.draw(screen)
         elif current_screen == "BACKGROUND_SELECT":
             bg_selector.draw(screen)
+        elif current_screen == "DATABASE_MENU":
+            database_menu.draw(screen)
+        elif current_screen == "PLAYER_STATS":
+            stats_screen.draw(screen)
+        elif current_screen == "MATCH_HISTORY":
+            history_screen.draw(screen)
+        elif current_screen == "LEADERBOARD":
+            leaderboard_screen.draw(screen)
 
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == "__main__":
-    result = main_menu()
-    if result:
-        p1_char, p2_char, selected_bg, pvc_mode = result
-        print(f"Selected: Player 1: {p1_char}, Player 2: {p2_char}, Background: {selected_bg.name}, PvC: {pvc_mode}") 
+    try:
+        result = main_menu()
+        if result:
+            # Start the actual game with the selected options
+            p1_char, p2_char, selected_bg, pvc_mode = result
+            print(f"Selected: Player 1: {p1_char}, Player 2: {p2_char}, Background: {selected_bg.name}, PvC: {pvc_mode}")
+            
+            # Import and launch the main game
+            import main
+            main.start_game(p1_char, p2_char, selected_bg, pvc_mode)
+    except Exception as e:
+        print(f"Error in main menu: {e}")
+        import traceback
+        traceback.print_exc() 

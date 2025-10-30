@@ -4,6 +4,7 @@ from fighter import Fighter
 import main_menu
 import sys
 import os
+from game_integration import get_game_session, record_game_result
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -19,6 +20,11 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     global game_paused, pause_menu_selection, background_sound_on, player_sound_on, match_over, match_winner
     
     print("Starting game with:", p1_character, p2_character, background_map.name, "PvC:", pvc_mode)  # Debug print
+    
+    # Start match tracking
+    session = get_game_session()
+    session.start_match()
+    
     mixer.init()
     pygame.init()
 
@@ -52,9 +58,11 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     game_paused = False
     pause_menu_selection = 0  # 0 = Background Sound, 1 = Player Sound, 2 = Resume, 3 = Quit
     
-    # Sound control variables
-    background_sound_on = True
-    player_sound_on = True
+    # Sound control variables - load from database
+    from game_integration import load_sound_preferences
+    sound_prefs = load_sound_preferences()
+    background_sound_on = sound_prefs['background_sound']
+    player_sound_on = sound_prefs['player_sound']
     time_up = False
     
     # Round tracking variables
@@ -66,6 +74,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
     match_over = False
     match_winner = ""
     victory_menu_selection = 0
+    match_recorded = False  # Track if match result has been recorded
     
     # Round announcement variables
     show_round_announcement = True
@@ -104,12 +113,19 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
 
     #load music and sounds
     pygame.mixer.music.load(resource_path("assets/audio/music.mp3"))
-    pygame.mixer.music.set_volume(0.5)
+    
+    # Apply loaded sound settings
+    bg_volume = sound_prefs['background_volume'] if background_sound_on else 0.0
+    pygame.mixer.music.set_volume(bg_volume)
     pygame.mixer.music.play(-1, 0.0, 5000)
+    
     sword_fx = pygame.mixer.Sound(resource_path("assets/audio/sword.wav"))
-    sword_fx.set_volume(0.5)
     magic_fx = pygame.mixer.Sound(resource_path("assets/audio/magic.wav"))
-    magic_fx.set_volume(0.75)
+    
+    # Apply sound effects volume
+    sfx_volume = sound_prefs['effects_volume'] if player_sound_on else 0.0
+    sword_fx.set_volume(sfx_volume)
+    magic_fx.set_volume(sfx_volume)
 
     #load spritesheets
     warrior_sheet = pygame.image.load(resource_path("assets/images/warrior/Sprites/warrior.png")).convert_alpha()
@@ -539,6 +555,26 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
         else:
             #display victory image
             screen.blit(victory_img, (360, 150))
+            
+            # Record match result in database (only once per match)
+            if match_over and not match_recorded:
+                game_mode = "PvC" if pvc_mode else "PvP"
+                
+                # Determine winner for database
+                if match_winner == "PLAYER 1":
+                    winner = "P1"
+                elif match_winner in ["PLAYER 2", "AI"]:
+                    winner = "P2"
+                else:
+                    winner = "DRAW"
+                
+                # Record the match result
+                record_game_result(
+                    p1_character, p2_character, winner, game_mode,
+                    score[0], score[1], score[1], score[0]
+                )
+                match_recorded = True
+                print(f"Match recorded: {match_winner} wins ({score[0]}-{score[1]})")
             if pygame.time.get_ticks() - round_over_time > ROUND_OVER_COOLDOWN:
                 round_over = False
                 intro_count = 5
@@ -621,6 +657,11 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                                 else:
                                     pygame.mixer.music.set_volume(0.0)
                                     print("Background sound OFF")
+                                
+                                # Save setting to database
+                                from game_integration import update_sound_preferences
+                                update_sound_preferences(background_sound_on, player_sound_on)
+                                
                             elif i == 1:  # Player Sound
                                 player_sound_on = not player_sound_on
                                 if player_sound_on:
@@ -631,6 +672,10 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                                     sword_fx.set_volume(0.0)
                                     magic_fx.set_volume(0.0)
                                     print("Player sound OFF")
+                                
+                                # Save setting to database
+                                from game_integration import update_sound_preferences
+                                update_sound_preferences(background_sound_on, player_sound_on)
                             elif i == 2:  # Resume
                                 game_paused = False
                                 print("Game Resumed")
@@ -663,6 +708,11 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                                 match_over = False
                                 match_winner = ""
                                 score = [0, 0]
+                                match_recorded = False  # Reset for new match
+                                
+                                # Start new match tracking
+                                session = get_game_session()
+                                session.start_match()
                                 current_round = 1
                                 round_over = False
                                 intro_count = 5
@@ -686,7 +736,7 @@ def start_game(p1_character, p2_character, background_map, pvc_mode=False):
                             elif i == 3:  # Quit
                                 print("Quitting game...")
                                 pygame.quit()
-                                exit()
+                                sys.exit()
                             break
 
         # Draw pause menu if paused
@@ -709,6 +759,15 @@ if __name__ == "__main__":
     # Initialize Pygame for the menu
     pygame.init()
     mixer.init()
+    
+    # Initialize database system
+    from game_integration import initialize_game_database, cleanup_game_database, start_player_session
+    
+    if not initialize_game_database():
+        print("Warning: Database system failed to initialize. Game will run without data persistence.")
+    
+    # Start default player session (we'll add proper player selection later)
+    start_player_session("Player1")
     
     # Main game loop to handle different states
     start_screen = "MENU"
@@ -741,7 +800,7 @@ if __name__ == "__main__":
                 elif game_result == "quit":
                     # Exit completely
                     pygame.quit()
-                    exit()
+                    sys.exit()
                 elif game_result is None:
                     # Game ended normally (ESC or window close)
                     start_screen = "MENU"
@@ -750,5 +809,6 @@ if __name__ == "__main__":
                 # If game_result is anything else, continue the inner loop (replay)
         else:
             # User quit from main menu
+            cleanup_game_database()
             pygame.quit()
-            exit()
+            sys.exit()

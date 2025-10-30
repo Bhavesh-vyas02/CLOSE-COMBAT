@@ -105,6 +105,12 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\ctypes\\_endian.py',
    'PYMODULE'),
+  ('database_manager',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\database_manager.py',
+   'PYMODULE'),
+  ('database_ui',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\database_ui.py',
+   'PYMODULE'),
   ('dataclasses',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\dataclasses.py',
@@ -215,6 +221,9 @@
   ('ftplib',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\ftplib.py',
+   'PYMODULE'),
+  ('game_integration',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\game_integration.py',
    'PYMODULE'),
   ('getopt',
    'C:\\Program '
@@ -364,6 +373,22 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\ipaddress.py',
    'PYMODULE'),
+  ('json',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\json\\__init__.py',
+   'PYMODULE'),
+  ('json.decoder',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\json\\decoder.py',
+   'PYMODULE'),
+  ('json.encoder',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\json\\encoder.py',
+   'PYMODULE'),
+  ('json.scanner',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\json\\scanner.py',
+   'PYMODULE'),
   ('logging',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\logging\\__init__.py',
@@ -372,8 +397,14 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\lzma.py',
    'PYMODULE'),
+  ('main',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\main.py',
+   'PYMODULE'),
   ('main_menu',
    'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\main_menu.py',
+   'PYMODULE'),
+  ('match_tracker',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\match_tracker.py',
    'PYMODULE'),
   ('mimetypes',
    'C:\\Program '
@@ -635,6 +666,9 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\platform.py',
    'PYMODULE'),
+  ('player_manager',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\player_manager.py',
+   'PYMODULE'),
   ('plistlib',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\plistlib.py',
@@ -752,6 +786,9 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\selectors.py',
    'PYMODULE'),
+  ('settings_manager',
+   'C:\\Users\\ADMIN\\OneDrive\\Desktop\\CLOSE-COMBAT\\settings_manager.py',
+   'PYMODULE'),
   ('shlex',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\shlex.py',
@@ -771,6 +808,18 @@
   ('socketserver',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\socketserver.py',
+   'PYMODULE'),
+  ('sqlite3',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\dbapi2.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\Lib\\sqlite3\\dump.py',
    'PYMODULE'),
   ('ssl',
    'C:\\Program '

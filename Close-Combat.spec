@@ -2,11 +2,22 @@
 
 
 a = Analysis(
-    ['main.py'],
+    ['main_menu.py'],
     pathex=[],
     binaries=[],
     datas=[('assets', 'assets')],
-    hiddenimports=[],
+    hiddenimports=[
+        'database_manager',
+        'database_ui',
+        'match_tracker',
+        'player_manager',
+        'game_integration',
+        'settings_manager',
+        'main',
+        'fighter',
+        'background_maps',
+        'sqlite3'
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
