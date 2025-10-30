@@ -256,8 +256,7 @@ Defeat your opponent by reducing their health bar to zero before the timer ends.
 
 <div align="center">
 
-https://github.com/user-attachments/assets/gameplay-demo.mp4
-
+![Gameplay Video](assets/readme/gameplay.mp4)
 _Click to play the gameplay demonstration video_
 
 </div>
