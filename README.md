@@ -256,12 +256,17 @@ Defeat your opponent by reducing their health bar to zero before the timer ends.
 
 <div align="center">
 
-![Gameplay Video](assets/readme/gameplay.mp4)
-_Click to play the gameplay demonstration video_
+<video width="800" controls>
+  <source src="https://github.com/Bhavesh-vyas02/CLOSE-COMBAT/issues/1#issue-3571350016" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+_Gameplay demonstration showing combat mechanics and UI_
 
 </div>
 
-> **Note**: GitHub supports MP4 videos directly. If the video doesn't load, you can also find it at `assets/readme/gameplay.mp4`
+> **Note**: If the video doesn't display, you can download it directly from `assets/readme/gameplay.mp4`
+
 > 📩 Contact
 > Bhavesh Vyas – Team Lead
 > 📧 bhaveshvyas.dev@gmail.com
