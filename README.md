@@ -1,59 +1,274 @@
-# Project Title: Street Fighter Clone Made in Python
+# 🥊 Close Combat – 2D Fighting Game
 
-## 1. Project Description:
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Pygame](https://img.shields.io/badge/Pygame-2.6.1-green.svg)](https://www.pygame.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
 
+---
 
-This project is a Clone of the Street Fighter Game. It has been developed in Python programming language, using the Pygame library.
+### 👨‍💻 Developed By:
+**Bhavesh Vyas**, **Chirag Maheshwari**, **Bhavin Prajapat**, **Adityaraj Singh**  
+*(Final Year BCA Project – 2024–2025)*
 
+---
 
-## 2. Tech Stack:
+## 📘 Abstract
 
-- Python 3
-- Pygame
+**Close Combat** is a 2D arcade-style fighting game built using **Python** and **Pygame**.  
+It combines the thrill of classic fighting games with modern programming techniques.  
+The project features **AI opponents**, **local multiplayer**, **multiple characters**, and **SQLite-based statistics tracking**.  
+Developed as a **final-year academic project**, it demonstrates advanced knowledge of **game programming, UI/UX design, and AI logic**.
 
-URL: [https://www.pygame.org/news ](https://www.pygame.org/news)
+---
 
+## 🎯 Project Objectives
 
-## 3. Installing:
+- Develop a complete 2D fighting game using **Python and Pygame**.  
+- Implement **two gameplay modes**: Player vs Player and Player vs AI.  
+- Design an interactive **menu system** and polished **user interface**.  
+- Integrate a **local database** to track matches and player stats.  
+- Package the project as a **standalone executable** for distribution.
 
-1. Clone the git repo
+---
 
-```
-https://github.com/russs123/brawler_tut.git
-```
+## 🧠 Learning Outcomes
 
-2. Open project folder
+- Mastery of **game loop architecture** and event-driven programming.  
+- Implementation of **AI decision-making** and movement logic.  
+- Modular coding for **maintainability and reusability**.  
+- Improved teamwork, version control, and iterative testing.  
+- Gained experience in **animation systems** and performance optimization.
 
-3. Explore
+---
 
-4. Open main.py and run
+## 🎮 Game Features
 
-5. Play the game
+### Core Gameplay
+- Smooth combat mechanics with responsive controls.  
+- Dual game modes: **Player vs Player** and **Player vs AI**.  
+- Six unique fighters, each with distinct fighting styles.  
+- Seven immersive battle arenas with dynamic visuals.  
+- Professional UI system including menus and music control.  
 
-Enjoy 😎
+### Advanced Features
+- AI opponent powered by distance and state-based logic.  
+- SQLite database for storing match history and player stats.  
+- Local multiplayer on a single keyboard.  
+- Pause, win, and restart options.  
+- Precompiled Windows executable for instant play.  
 
+---
 
-## 4. Contributing:
+## 🎮 Game Modes
 
-Pull requests are welcome. 
+| Mode | Description | Players |
+|------|--------------|----------|
+| **Player vs Player (PvP)** | Two players on one keyboard | 2 Human Players |
+| **Player vs AI (PvAI)** | Single player battles against the computer | 1 Player + AI |
 
-For major changes, please open an issue first to discuss what you would like to change with project owner (Coding With Russ).
+---
 
+## 🧩 Playable Characters
 
-## 5. Screen Recording:
+| Character | Type | Abilities |
+|------------|------|------------|
+| **Hero Knight** | Paladin | Balanced melee combat |
+| **Martial Hero** | Fighter | Fast combo attacks |
+| **Wizard** | Mage | Ranged magical attacks |
+| **Medieval King** | Warrior | Heavy strikes, slow movement |
+| **Huntress** | Archer | Agile, ranged precision |
+| **Berserker** | Brute | Aggressive melee combat |
 
-https://user-images.githubusercontent.com/15172744/190894691-c52ac22d-b76c-4890-9057-98eed66683a9.mp4
+---
 
+## 🌍 Battle Arenas
 
-## 6. Created By:
+- Desert Ruins  
+- Mystical Forest  
+- Frozen Arena  
+- Sacred Temple  
+- Peaceful Plains  
+- Volcanic Fury  
+- Grand Arena  
 
-Name: Coding With Russ
+Each map includes custom-designed visuals and background effects.
 
-Project Name: Street Fighter Style Fighting Game in Python using Pygame - Complete Tutorial
+---
 
-Youtube: https://www.youtube.com/watch?v=s5bd9KMSSW4
+## ⚙️ Installation & Setup Guide
 
-Github: https://github.com/russs123/brawler_tut
+### 🪟 Prerequisites
+- **Operating System:** Windows 10 or later  
+- **Python Version:** 3.11+  
+- **RAM:** 1 GB minimum  
+- **Storage:** 100 MB free space  
 
+---
 
+### 🧩 Steps to Install and Run
+
+#### Option 1: Run the Source Code
+1. **Install Python and Pygame:**
+   ```bash
+   pip install pygame
+Run the game:
+
+bash
+Copy code
+python main.py
+Option 2: Play Using Executable
+If you have the compiled version:
+
+objectivec
+Copy code
+dist/CLOSE-COMBAT.exe
+Just double-click to play — no setup required.
+
+🛠️ Troubleshooting
+If you see:
+
+ModuleNotFoundError: No module named 'pygame'
+
+Run:
+
+bash
+Copy code
+pip install pygame --upgrade
+If the game doesn’t launch:
+
+Ensure you’re inside the project folder.
+
+Verify all assets (sprites, music, and database) are present.
+
+Run from VS Code terminal or CMD.
+
+🎮 How to Play
+🎯 Objective
+Defeat your opponent by reducing their health bar to zero before the timer ends.
+
+🎮 Controls
+Action	Player 1	Player 2
+Move Left	A	←
+Move Right	D	→
+Jump	W	↑
+Attack 1	R	1
+Attack 2	T	2
+Pause	Esc	Esc
+
+🧭 Game Flow
+Launch the game.
+
+Select Game Mode (PvP or PvAI).
+
+Choose your Character and Battle Arena.
+
+Fight — the first to win 2 rounds is victorious.
+
+After victory, return to Main Menu or quit the game.
+
+🧠 AI System
+AI activates in PvAI Mode.
+
+Uses distance-based logic to approach, attack, or retreat.
+
+Jumps randomly to simulate dynamic decision-making.
+
+Responds to player movement and attack states.
+
+📊 Database Integration
+Database: SQLite3
+
+Stores:
+
+Player stats
+
+Match results
+
+Character selection
+
+Win/loss data
+
+Data persists between sessions.
+
+🧱 Development Methodology
+Followed an Iterative Development Model.
+
+Divided work into modules for easy debugging.
+
+Used GitHub for version control and code review.
+
+Weekly testing and feedback-based updates.
+
+🧪 Testing & Evaluation
+Functional Testing: Checked all menus, controls, and combat.
+
+Performance Testing: Optimized rendering for 60+ FPS.
+
+Peer Testing: Conducted local multiplayer sessions.
+
+Validation: Code reviewed for PEP8 compliance.
+
+👨‍💻 Team Members
+Name	Role	Contributions
+Bhavesh Vyas	Team Leader / Lead Programmer	Full UI system, menu design, core gameplay structure, background map design, animation handling
+Chirag Maheshwari	Co-Programmer / AI Developer	Core mechanics, AI movement & attack logic, animation code
+Bhavin Prajapat	Database Developer	Designed SQLite database and stat management
+Adityaraj Singh	Resource Manager	Collected free assets (sprites, music, sounds) from online sources
+
+🔧 Development & Maintenance
+Developed using Python (Pygame) in VS Code.
+
+Built using PyInstaller for executable distribution.
+
+Assets sourced from OpenGameArt, itch.io, and FreeSound.
+
+Version managed with GitHub under the MIT License.
+
+🚀 Future Scope
+Online multiplayer and matchmaking system.
+
+Character customization and unlockable skins.
+
+Tournament and story modes.
+
+Smarter AI with difficulty levels.
+
+Mobile (Android) compatibility.
+
+📸 Screenshots
+(Add screenshots below when ready)
+
+Example:
+
+markdown
+Copy code
+![Main Menu](screenshots/main_menu.png)
+![Gameplay](screenshots/gameplay.png)
+![Character Select](screenshots/character_select.png)
+🎥 Gameplay Video
+(Add video link once uploaded)
+
+Example:
+
+markdown
+Copy code
+[🎬 Watch Gameplay Demo](https://youtu.be/your-video-link)
+📩 Contact
+Bhavesh Vyas – Team Lead
+📧 bhaveshvyas.dev@gmail.com
+💻 GitHub: Bhavesh-vyas02
+
+🏛️ Project Information
+🎓 Final Year College Project – Game Development
+📍 Bachelor of Computer Applications (BCA)
+🕹️ Academic Year: 2024–2025
+🏫 Institution: [Your College Name]
+
+🏆 Acknowledgments
+Pygame Community – for their powerful framework.
+
+OpenGameArt / itch.io / FreeSound – for free assets and sounds.
+
+University Faculty – for guidance and supervision.
 
