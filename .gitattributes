@@ -4,8 +4,8 @@ dist/* linguist-vendored
 .vscode/* linguist-vendored
 *.spec linguist-vendored
 *.toc linguist-vendored
-
 # Optional: ignore docs or latex files if they exist
 *.tex linguist-vendored
 *.html linguist-vendored
 *.css linguist-vendored
+*.mp4 filter=lfs diff=lfs merge=lfs -text
