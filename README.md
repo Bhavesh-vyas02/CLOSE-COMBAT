@@ -67,20 +67,7 @@ Developed as a **final-year academic project**, it demonstrates advanced knowled
 | **Player vs Player (PvP)** | Two players on one keyboard | 2 Human Players |
 | **Player vs AI (PvAI)** | Single player battles against the computer | 1 Player + AI |
 
----
-
-## 🧩 Playable Characters
-
-| Character | Type | Abilities |
-|------------|------|------------|
-| **Hero Knight** | Paladin | Balanced melee combat |
-| **Martial Hero** | Fighter | Fast combo attacks |
-| **Wizard** | Mage | Ranged magical attacks |
-| **Medieval King** | Warrior | Heavy strikes, slow movement |
-| **Huntress** | Archer | Agile, ranged precision |
-| **Berserker** | Brute | Aggressive melee combat |
-
----
+--
 
 ## 🌍 Battle Arenas
 

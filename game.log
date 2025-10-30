@@ -581,3 +581,7 @@
 2025-10-30 16:32:30,372 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
 2025-10-30 16:32:30,390 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
 2025-10-30 16:32:30,409 - DatabaseManager - ERROR - Fetch all error: no such column: p.name
+2025-10-30 17:35:25,136 - DatabaseManager - INFO - Connected to database: C:\Users\ADMIN\AppData\Local\Temp\_MEI45962\close_combat.db
+2025-10-30 17:35:25,217 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 17:35:25,217 - GameSession - INFO - Database initialized successfully
+2025-10-30 17:35:25,218 - SettingsManager - INFO - Initialized default settings
