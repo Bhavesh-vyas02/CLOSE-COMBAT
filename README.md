@@ -8,8 +8,9 @@
 ---
 
 ### 👨‍💻 Developed By:
+
 **Bhavesh Vyas**, **Chirag Maheshwari**, **Bhavin Prajapat**, **Adityaraj Singh**  
-*(Final Year BCA Project – 2024–2025)*
+_(Final Year BCA Project – 2024–2025)_
 
 ---
 
@@ -24,20 +25,20 @@ Developed as a **final-year academic project**, it demonstrates advanced knowled
 
 ## 🎯 Project Objectives
 
-- Develop a complete 2D fighting game using **Python and Pygame**.  
-- Implement **two gameplay modes**: Player vs Player and Player vs AI.  
-- Design an interactive **menu system** and polished **user interface**.  
-- Integrate a **local database** to track matches and player stats.  
+- Develop a complete 2D fighting game using **Python and Pygame**.
+- Implement **two gameplay modes**: Player vs Player and Player vs AI.
+- Design an interactive **menu system** and polished **user interface**.
+- Integrate a **local database** to track matches and player stats.
 - Package the project as a **standalone executable** for distribution.
 
 ---
 
 ## 🧠 Learning Outcomes
 
-- Mastery of **game loop architecture** and event-driven programming.  
-- Implementation of **AI decision-making** and movement logic.  
-- Modular coding for **maintainability and reusability**.  
-- Improved teamwork, version control, and iterative testing.  
+- Mastery of **game loop architecture** and event-driven programming.
+- Implementation of **AI decision-making** and movement logic.
+- Modular coding for **maintainability and reusability**.
+- Improved teamwork, version control, and iterative testing.
 - Gained experience in **animation systems** and performance optimization.
 
 ---
@@ -45,39 +46,41 @@ Developed as a **final-year academic project**, it demonstrates advanced knowled
 ## 🎮 Game Features
 
 ### Core Gameplay
-- Smooth combat mechanics with responsive controls.  
-- Dual game modes: **Player vs Player** and **Player vs AI**.  
-- Six unique fighters, each with distinct fighting styles.  
-- Seven immersive battle arenas with dynamic visuals.  
-- Professional UI system including menus and music control.  
+
+- Smooth combat mechanics with responsive controls.
+- Dual game modes: **Player vs Player** and **Player vs AI**.
+- Six unique fighters, each with distinct fighting styles.
+- Seven immersive battle arenas with dynamic visuals.
+- Professional UI system including menus and music control.
 
 ### Advanced Features
-- AI opponent powered by distance and state-based logic.  
-- SQLite database for storing match history and player stats.  
-- Local multiplayer on a single keyboard.  
-- Pause, win, and restart options.  
-- Precompiled Windows executable for instant play.  
+
+- AI opponent powered by distance and state-based logic.
+- SQLite database for storing match history and player stats.
+- Local multiplayer on a single keyboard.
+- Pause, win, and restart options.
+- Precompiled Windows executable for instant play.
 
 ---
 
 ## 🎮 Game Modes
 
-| Mode | Description | Players |
-|------|--------------|----------|
-| **Player vs Player (PvP)** | Two players on one keyboard | 2 Human Players |
-| **Player vs AI (PvAI)** | Single player battles against the computer | 1 Player + AI |
+| Mode                       | Description                                | Players         |
+| -------------------------- | ------------------------------------------ | --------------- |
+| **Player vs Player (PvP)** | Two players on one keyboard                | 2 Human Players |
+| **Player vs AI (PvAI)**    | Single player battles against the computer | 1 Player + AI   |
 
 --
 
 ## 🌍 Battle Arenas
 
-- Desert Ruins  
-- Mystical Forest  
-- Frozen Arena  
-- Sacred Temple  
-- Peaceful Plains  
-- Volcanic Fury  
-- Grand Arena  
+- Desert Ruins
+- Mystical Forest
+- Frozen Arena
+- Sacred Temple
+- Peaceful Plains
+- Volcanic Fury
+- Grand Arena
 
 Each map includes custom-designed visuals and background effects.
 
@@ -86,20 +89,23 @@ Each map includes custom-designed visuals and background effects.
 ## ⚙️ Installation & Setup Guide
 
 ### 🪟 Prerequisites
-- **Operating System:** Windows 10 or later  
-- **Python Version:** 3.11+  
-- **RAM:** 1 GB minimum  
-- **Storage:** 100 MB free space  
+
+- **Operating System:** Windows 10 or later
+- **Python Version:** 3.11+
+- **RAM:** 1 GB minimum
+- **Storage:** 100 MB free space
 
 ---
 
 ### 🧩 Steps to Install and Run
 
 #### Option 1: Run the Source Code
+
 1. **Install Python and Pygame:**
    ```bash
    pip install pygame
-Run the game:
+   Run the game:
+   ```
 
 bash
 Copy code
@@ -134,120 +140,133 @@ Run from VS Code terminal or CMD.
 🎯 Objective
 Defeat your opponent by reducing their health bar to zero before the timer ends.
 
-🎮 Controls
-Action	Player 1	Player 2
-Move Left	A	←
-Move Right	D	→
-Jump	W	↑
-Attack 1	R	1
-Attack 2	T	2
-Pause	Esc	Esc
+### 🎮 Controls
 
-🧭 Game Flow
-Launch the game.
+| Action         | Player 1 | Player 2 |
+| -------------- | -------- | -------- |
+| **Move Left**  | A        | ←        |
+| **Move Right** | D        | →        |
+| **Jump**       | W        | ↑        |
+| **Attack 1**   | R        | 1        |
+| **Attack 2**   | T        | 2        |
+| **Pause**      | Esc      | Esc      |
 
-Select Game Mode (PvP or PvAI).
+### 🧭 Game Flow
 
-Choose your Character and Battle Arena.
+1. **Launch** the game
+2. **Select Game Mode** (PvP or PvAI)
+3. **Choose your Character** and Battle Arena
+4. **Fight** — the first to win 2 rounds is victorious
+5. **After victory**, return to Main Menu or quit the game
 
-Fight — the first to win 2 rounds is victorious.
+### 🧠 AI System
 
-After victory, return to Main Menu or quit the game.
+- **Activation**: AI activates in PvAI Mode
+- **Logic**: Uses distance-based logic to approach, attack, or retreat
+- **Dynamic Behavior**: Jumps randomly to simulate dynamic decision-making
+- **Responsiveness**: Responds to player movement and attack states
 
-🧠 AI System
-AI activates in PvAI Mode.
+### 📊 Database Integration
 
-Uses distance-based logic to approach, attack, or retreat.
+**Database**: SQLite3
 
-Jumps randomly to simulate dynamic decision-making.
+**Stores**:
 
-Responds to player movement and attack states.
+- Player statistics
+- Match results
+- Character selection history
+- Win/loss data
+- Performance metrics
 
-📊 Database Integration
-Database: SQLite3
+**Features**: Data persists between sessions for continuous tracking
 
-Stores:
+## 🧱 Development Methodology
 
-Player stats
+- **Iterative Development Model**: Followed agile development practices
+- **Modular Architecture**: Divided work into modules for easy debugging and maintenance
+- **Version Control**: Used GitHub for collaborative development and code review
+- **Regular Testing**: Weekly testing cycles with feedback-based updates
 
-Match results
+## 🧪 Testing & Evaluation
 
-Character selection
+- **Functional Testing**: Checked all menus, controls, and combat mechanics
+- **Performance Testing**: Optimized rendering for 60+ FPS gameplay
+- **Peer Testing**: Conducted local multiplayer sessions for user feedback
+- **Code Validation**: Reviewed for PEP8 compliance and best practices
 
-Win/loss data
+## 👨‍💻 Team Members
 
-Data persists between sessions.
+| Name                  | Role                          | Contributions                                                                                   |
+| --------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Bhavesh Vyas**      | Team Leader / Lead Programmer | Full UI system, menu design, core gameplay structure, background map design, animation handling |
+| **Chirag Maheshwari** | Co-Programmer / AI Developer  | Core mechanics, AI movement & attack logic, animation code                                      |
+| **Bhavin Prajapat**   | Database Developer            | Designed SQLite database and stat management                                                    |
+| **Adityaraj Singh**   | Resource Manager              | Collected free assets (sprites, music, sounds) from online sources                              |
 
-🧱 Development Methodology
-Followed an Iterative Development Model.
+## 🔧 Development & Maintenance
 
-Divided work into modules for easy debugging.
+- **Development Environment**: Python (Pygame) in VS Code
+- **Build System**: PyInstaller for executable distribution
+- **Asset Sources**: OpenGameArt, itch.io, and FreeSound
+- **Version Control**: GitHub with MIT License
 
-Used GitHub for version control and code review.
+## 🚀 Future Scope
 
-Weekly testing and feedback-based updates.
-
-🧪 Testing & Evaluation
-Functional Testing: Checked all menus, controls, and combat.
-
-Performance Testing: Optimized rendering for 60+ FPS.
-
-Peer Testing: Conducted local multiplayer sessions.
-
-Validation: Code reviewed for PEP8 compliance.
-
-👨‍💻 Team Members
-Name	Role	Contributions
-Bhavesh Vyas	Team Leader / Lead Programmer	Full UI system, menu design, core gameplay structure, background map design, animation handling
-Chirag Maheshwari	Co-Programmer / AI Developer	Core mechanics, AI movement & attack logic, animation code
-Bhavin Prajapat	Database Developer	Designed SQLite database and stat management
-Adityaraj Singh	Resource Manager	Collected free assets (sprites, music, sounds) from online sources
-
-🔧 Development & Maintenance
-Developed using Python (Pygame) in VS Code.
-
-Built using PyInstaller for executable distribution.
-
-Assets sourced from OpenGameArt, itch.io, and FreeSound.
-
-Version managed with GitHub under the MIT License.
-
-🚀 Future Scope
-Online multiplayer and matchmaking system.
-
-Character customization and unlockable skins.
-
-Tournament and story modes.
-
-Smarter AI with difficulty levels.
-
-Mobile (Android) compatibility.
+- **Online Multiplayer**: Matchmaking system for remote battles
+- **Character Customization**: Unlockable skins and abilities
+- **Game Modes**: Tournament and story mode campaigns
+- **Enhanced AI**: Multiple difficulty levels and smarter opponents
+- **Platform Expansion**: Mobile (Android) compatibility
 
 📸 Screenshots
-(Add screenshots below when ready)
 
-Example:
+<div align="center">
 
-markdown
-Copy code
-![Main Menu](assets\readme\main_menu.png)
-![Gameplay](assets\readme/gameplay.png)
-![Character Select](assets\readme\character_selection.png)
-![map Select](assets\readme\map_selection.png)
-![option menu](assets\readme\option.png)
-![paused menu](assets\readme\paused_menu.png)
-![victory](assets\readme\victory.png)
-🎥 Gameplay Video
-![gameplay video](assets\readme\gameplay.mp4)
+### 🏠 Main Menu
 
-Example:
+![Main Menu](assets/readme/main_menu.png)
 
-markdown
-Copy code
-📩 Contact
-Bhavesh Vyas – Team Lead
-📧 bhaveshvyas.dev@gmail.com
-💻 GitHub: Bhavesh-vyas02
+### 👥 Character Selection
+
+![Character Select](assets/readme/character_selection.png)
+
+### 🗺️ Map Selection
+
+![Map Select](assets/readme/map_selection.png)
+
+### ⚔️ Gameplay
+
+![Gameplay](assets/readme/gameplay.png)
+
+### ⚙️ Game Options
+
+![Option Menu](assets/readme/option.png)
+
+### ⏸️ Pause Menu
+
+![Paused Menu](assets/readme/paused_menu.png)
+
+### 🏆 Victory Screen
+
+![Victory](assets/readme/victory.png)
+
+</div>
+
+## 🎥 Gameplay Video
+
+<div align="center">
+
+https://github.com/user-attachments/assets/gameplay-demo.mp4
+
+_Click to play the gameplay demonstration video_
+
+</div>
+
+> **Note**: GitHub supports MP4 videos directly. If the video doesn't load, you can also find it at `assets/readme/gameplay.mp4`
+> 📩 Contact
+> Bhavesh Vyas – Team Lead
+> 📧 bhaveshvyas.dev@gmail.com
+> 💻 GitHub: Bhavesh-vyas02
 
 🏛️ Project Information
 🎓 Final Year College Project – Game Development
@@ -261,4 +280,3 @@ Pygame Community – for their powerful framework.
 OpenGameArt / itch.io / FreeSound – for free assets and sounds.
 
 University Faculty – for guidance and supervision.
-
