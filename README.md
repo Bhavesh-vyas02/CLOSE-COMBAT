@@ -257,7 +257,7 @@ Defeat your opponent by reducing their health bar to zero before the timer ends.
 <div align="center">
 
 <video width="800" controls>
-  <source src="https://github.com/Bhavesh-vyas02/CLOSE-COMBAT/issues/1#issue-3571350016" type="video/mp4">
+  <source src="assets/readme/gameplay.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
