@@ -256,16 +256,13 @@ Defeat your opponent by reducing their health bar to zero before the timer ends.
 
 <div align="center">
 
-<video width="800" controls>
-  <source src="assets/readme/gameplay.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/c91a4ddc-0fe7-43f6-ab7e-dce2636bf708
 
 _Gameplay demonstration showing combat mechanics and UI_
 
 </div>
 
-> **Note**: If the video doesn't display, you can download it directly from `assets/readme/gameplay.mp4`
+> **Note**: Video shows character selection, combat mechanics, AI behavior, and victory conditions
 
 > 📩 Contact
 > Bhavesh Vyas – Team Lead
