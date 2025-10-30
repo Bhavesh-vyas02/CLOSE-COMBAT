@@ -585,3 +585,27 @@
 2025-10-30 17:35:25,217 - DatabaseManager - INFO - Database schema created successfully
 2025-10-30 17:35:25,217 - GameSession - INFO - Database initialized successfully
 2025-10-30 17:35:25,218 - SettingsManager - INFO - Initialized default settings
+2025-10-30 18:09:41,760 - DatabaseManager - INFO - Connected to database: c:\Users\cmkar\OneDrive\Desktop\CLOSE-COMBAT\close_combat.db
+2025-10-30 18:09:41,767 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 18:09:41,767 - GameSession - INFO - Database initialized successfully
+2025-10-30 18:09:41,769 - SettingsManager - INFO - Initialized default settings
+2025-10-30 18:09:41,771 - GameSession - INFO - Loaded existing player: Player1
+2025-10-30 18:26:22,657 - MatchTracker - INFO - Recorded match 4 for player 2: WIN
+2025-10-30 18:26:22,667 - PlayerManager - INFO - Updated stats for player 2, character HERO_KNIGHT: WIN
+2025-10-30 18:26:22,667 - GameSession - INFO - Match recorded: WIN with HERO_KNIGHT vs HUNTRESS
+2025-10-30 18:36:13,523 - DatabaseManager - INFO - Connected to database: c:\Users\cmkar\OneDrive\Desktop\CLOSE-COMBAT\close_combat.db
+2025-10-30 18:36:13,526 - DatabaseManager - INFO - Database schema created successfully
+2025-10-30 18:36:13,527 - GameSession - INFO - Database initialized successfully
+2025-10-30 18:36:13,528 - SettingsManager - INFO - Initialized default settings
+2025-10-30 18:36:13,529 - GameSession - INFO - Loaded existing player: Player1
+2025-10-30 18:37:48,828 - SettingsManager - INFO - Saved setting background_sound=False for player 2
+2025-10-30 18:37:48,832 - SettingsManager - INFO - Saved setting player_sound=True for player 2
+2025-10-30 18:37:56,895 - SettingsManager - INFO - Saved setting background_sound=True for player 2
+2025-10-30 18:37:56,899 - SettingsManager - INFO - Saved setting player_sound=True for player 2
+2025-10-30 18:37:57,994 - SettingsManager - INFO - Saved setting background_sound=True for player 2
+2025-10-30 18:37:58,002 - SettingsManager - INFO - Saved setting player_sound=False for player 2
+2025-10-30 18:38:06,619 - SettingsManager - INFO - Saved setting background_sound=True for player 2
+2025-10-30 18:38:06,627 - SettingsManager - INFO - Saved setting player_sound=True for player 2
+2025-10-30 18:38:09,800 - MatchTracker - INFO - Recorded match 5 for player 2: WIN
+2025-10-30 18:38:09,809 - PlayerManager - INFO - Updated stats for player 2, character HUNTRESS: WIN
+2025-10-30 18:38:09,809 - GameSession - INFO - Match recorded: WIN with HUNTRESS vs KING

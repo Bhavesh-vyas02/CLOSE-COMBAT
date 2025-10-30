@@ -230,17 +230,20 @@ Example:
 
 markdown
 Copy code
-![Main Menu](screenshots/main_menu.png)
-![Gameplay](screenshots/gameplay.png)
-![Character Select](screenshots/character_select.png)
+![Main Menu](assets\readme\main_menu.png)
+![Gameplay](assets\readme/gameplay.png)
+![Character Select](assets\readme\character_selection.png)
+![map Select](assets\readme\map_selection.png)
+![option menu](assets\readme\option.png)
+![paused menu](assets\readme\paused_menu.png)
+![victory](assets\readme\victory.png)
 🎥 Gameplay Video
-(Add video link once uploaded)
+![gameplay video](assets\readme\gameplay.mp4)
 
 Example:
 
 markdown
 Copy code
-[🎬 Watch Gameplay Demo](https://youtu.be/your-video-link)
 📩 Contact
 Bhavesh Vyas – Team Lead
 📧 bhaveshvyas.dev@gmail.com
