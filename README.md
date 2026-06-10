@@ -189,10 +189,10 @@ Defeat your opponent by reducing their health bar to zero before the timer ends.
 
 ## 🧪 Testing & Evaluation
 
-- **Functional Testing**: Checked all menus, controls, and combat mechanics
-- **Performance Testing**: Optimized rendering for 60+ FPS gameplay
-- **Peer Testing**: Conducted local multiplayer sessions for user feedback
-- **Code Validation**: Reviewed for PEP8 compliance and best practices
+- **Functional Testing**: Checked all menus, controls, and combat mechanics.
+- **Performance Testing**: Optimized rendering for 60+ FPS gameplay.
+- **Peer Testing**: Conducted local multiplayer sessions for user feedback.
+- **Code Validation**: Reviewed for PEP8 compliance and best practices.
 
 ## 👨‍💻 Team Members
 
